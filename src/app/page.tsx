@@ -4,8 +4,8 @@
 // }; /* (пример подключения метатегов, в д.с перекрываются метатегами из layout.tsx) */
 
 import { getAllArticles } from "./(server)/api";
-import { ROUTING } from "./routing";
 import { AppLink } from "./shared/components/app-link";
+import ArticlePreview from "./ArticlePreview";
 
 const ARTICLES_PER_PAGE = 10;
 /* (серверный компонент, может работать с async, вотличии от react) */
@@ -29,9 +29,7 @@ export default async function Home({searchParams}: {
       <ul>
         {articles.map((article) => (
           <li key={article.name}>
-            <AppLink href={ROUTING.article(article.name)}>
-              {article.header}
-            </AppLink>
+            <ArticlePreview name={article.name} text={article.header}/>
           </li>
         ))}
       </ul>
@@ -42,3 +40,5 @@ export default async function Home({searchParams}: {
     </>
   );
 }
+
+
